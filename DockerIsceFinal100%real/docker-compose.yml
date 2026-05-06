@@ -1,0 +1,43 @@
+# =============================================================================
+# docker-compose.yml — sisar/isce2 v2.6.3
+#
+# For local development and manual testing only.
+# In production the SISAR scheduler launches containers via the Docker API.
+#
+# Usage:
+#   docker compose run --rm isce2 unpack_topo_reference
+#   docker compose run --rm isce2 pairs_misreg --jobs 4
+#   docker compose run --rm isce2 phase_unwrap
+#
+#   # Debug shell:
+#   docker compose run --rm --entrypoint /bin/bash isce2
+#
+# Set JOB_DIR in .env to the absolute path of the job directory to process.
+# =============================================================================
+
+services:
+  isce2:
+    image: sisar/isce2:0.1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: isce2_proc
+
+    volumes:
+      # Job working directory — bind-mounted at /job (spec §7)
+      - ${JOB_DIR:-./job}:/job
+
+    working_dir: /job
+
+    # Processing stages have no network access (spec §7)
+    network_mode: "none"
+
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 8G
+
+    restart: "no"

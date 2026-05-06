@@ -1,0 +1,59 @@
+# =============================================================================
+# SISAR Scheduler — System Configuration
+# =============================================================================
+
+[paths]
+jobs_root    = "/home/tomas/sisar/jobs"
+archive_root = "/home/tomas/sisar/archive"
+logs_root    = "/home/tomas/sisar/logs"
+
+# -----------------------------------------------------------------------------
+[database]
+# -----------------------------------------------------------------------------
+url       = "postgres://postgres@%2Frun%2Fpostgresql/sisar"
+pool_size = 20
+
+# -----------------------------------------------------------------------------
+[scheduler]
+# -----------------------------------------------------------------------------
+poll_interval_secs        = 10
+max_concurrent_containers = 16
+
+# -----------------------------------------------------------------------------
+[resources]
+# -----------------------------------------------------------------------------
+total_cpu_cores = 8
+total_ram_gb    = 16
+
+# -----------------------------------------------------------------------------
+[containers]
+# -----------------------------------------------------------------------------
+download = "sisar/isat-desc-1:latest"
+isce2    = "sisar/isce2:0.1.0"
+mintpy   = "sisar/mintpy:latest"
+miaplpy  = "sisar/miaplpy:latest"
+
+# =============================================================================
+# User tier limits
+# =============================================================================
+# All limits are enforced by the API server at submission time, except
+# max_concurrent_jobs which is also enforced by the scheduler at dispatch.
+# Set any limit to 0 for unlimited.
+
+[user_tiers.demo]
+max_aoi_km2         = 500
+max_time_range_days = 30
+max_concurrent_jobs = 1
+max_jobs_per_month  = 3
+
+[user_tiers.free]
+max_aoi_km2         = 2000
+max_time_range_days = 180
+max_concurrent_jobs = 2
+max_jobs_per_month  = 10
+
+[user_tiers.pro]
+max_aoi_km2         = 0   # unlimited
+max_time_range_days = 0   # unlimited
+max_concurrent_jobs = 5
+max_jobs_per_month  = 0   # unlimited

@@ -1,0 +1,79 @@
+# =============================================================================
+# SISAR Scheduler — Workflow & Resource Configuration
+# =============================================================================
+#
+# Resource requirements are specified as (cpu_cores, ram_gb) pairs.
+#
+# The scheduler resolves a step's requirements in this priority order:
+#   1. Per-step override in [isce2_overrides], [mintpy_overrides], etc.
+#   2. The tier default in [tiers] matching that step's assigned tier.
+#
+# Tier assignments per ISCE2 stage (hardcoded, informed by these defaults):
+#
+#   Light  — unpack_topo_reference, unpack_secondary_slc,
+#             extract_burst_overlaps, extract_stack_valid_region,
+#             merge_reference_secondary_slc, merge_burst_igram
+#
+#   Medium — average_baseline, overlap_geo_to_radar, overlap_resample,
+#             pairs_misreg, timeseries_misreg, full_burst_geo_to_radar,
+#             full_burst_resample, generate_burst_igram, filter_coherence
+#
+#   Heavy  — phase_unwrap
+#
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Resource tier defaults
+# -----------------------------------------------------------------------------
+[tiers]
+
+[tiers.light]
+cpu_cores = 2
+ram_gb    = 4.0
+
+[tiers.medium]
+cpu_cores = 4
+ram_gb    = 16.0
+
+[tiers.heavy]
+cpu_cores = 8
+ram_gb    = 16
+
+# -----------------------------------------------------------------------------
+# Download step resources
+# -----------------------------------------------------------------------------
+[download]
+cpu_cores = 2
+ram_gb    = 4.0
+
+# -----------------------------------------------------------------------------
+# ISCE2 per-step overrides  (optional)
+# -----------------------------------------------------------------------------
+# Uncomment and adjust any stage whose observed resource usage differs from
+# its tier default. Keys are snake_case stage names matching IsceStage variants.
+#
+# [isce2_overrides.phase_unwrap]
+# cpu_cores = 16
+# ram_gb    = 64.0
+#
+# [isce2_overrides.full_burst_resample]
+# cpu_cores = 6
+# ram_gb    = 24.0
+
+# -----------------------------------------------------------------------------
+# MintPy per-step overrides  (optional)
+# -----------------------------------------------------------------------------
+# Populated once MintPy stages are defined.
+#
+# [mintpy_overrides.some_stage]
+# cpu_cores = 4
+# ram_gb    = 16.0
+
+# -----------------------------------------------------------------------------
+# MiaplPy per-step overrides  (optional)
+# -----------------------------------------------------------------------------
+# Populated once MiaplPy stages are defined.
+#
+# [miaplpy_overrides.some_stage]
+# cpu_cores = 4
+# ram_gb    = 16.0
