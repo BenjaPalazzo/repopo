@@ -80,6 +80,7 @@ RUN pip3 install /tmp/burst2safe
 COPY scripts/local2safe.py   /usr/local/bin/local2safe
 RUN chmod +x /usr/local/bin/local2safe
 
+# download_dem: downloads and ISCE2-prepares the Copernicus GLO-30 DEM
 COPY scripts/download_dem.py /usr/local/bin/download_dem
 RUN chmod +x /usr/local/bin/download_dem
 

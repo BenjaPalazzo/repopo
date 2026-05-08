@@ -1,0 +1,28 @@
+# sisar/download — Python requirements
+#
+# Installed in order: GDAL binding first (ABI-pinned to system GDAL),
+# then this file.
+#
+# burst2safe pulls in boto3, s3transfer, requests, etc. automatically.
+# dem_stitcher pulls in rasterio, pyproj, shapely, numpy, etc.
+
+# ── SAR burst stitching ───────────────────────────────────────────────────────
+burst2safe>=0.6.0
+
+# ── DEM stitching (Copernicus GLO-30/90) ─────────────────────────────────────
+dem-stitcher>=2.5.3
+rasterio>=1.3
+shapely>=2.0
+numpy>=1.24
+pyproj>=3.5
+
+# ── Orbit download ────────────────────────────────────────────────────────────
+# sentineleof downloads precise orbit files (POE/RESORB) given a set of
+# Sentinel-1 SAFE/zip files.  The CLI entry-point is `eof`.
+sentineleof>=0.10.0
+
+# ── XML manipulation (DEM XML tagging) ───────────────────────────────────────
+lxml>=4.9
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+toml>=0.10

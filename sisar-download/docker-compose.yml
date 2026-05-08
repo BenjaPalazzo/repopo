@@ -1,0 +1,37 @@
+# sisar/download — docker-compose.yml
+#
+# For local development and manual testing ONLY.
+# The SISAR scheduler launches this container via the bollard Docker API;
+# it does not use Compose.
+#
+# Usage:
+#   cp env.example .env
+#   # Edit .env: set JOB_DIR and ARCHIVE_DIR to absolute paths on the host
+#   docker compose run --rm download
+#   # Open a debug shell:
+#   docker compose run --rm --entrypoint /bin/bash download
+
+services:
+  download:
+    build: .
+    image: sisar/download:latest
+
+    volumes:
+      # Job working directory — must contain specification.toml and burst_list.json
+      - "${JOB_DIR}:/job:rw"
+      # Shared burst archive — read/write so the container can cache downloaded bursts
+      - "${ARCHIVE_DIR}:/archive:rw"
+
+    environment:
+      # NASA Earthdata credentials.  Alternatively, bind-mount a ~/.netrc:
+      #   - "${HOME}/.netrc:/root/.netrc:ro"
+      - EARTHDATA_USER=${EARTHDATA_USER:-}
+      - EARTHDATA_PASS=${EARTHDATA_PASS:-}
+
+    # The download container requires internet access — do NOT set network_mode: none
+    # resource limits (mirrors scheduler defaults for the download step)
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: "4g"

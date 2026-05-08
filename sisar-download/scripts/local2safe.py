@@ -131,7 +131,7 @@ def load_burst_infos(slc_dict: dict) -> list[utils.BurstInfo]:
 def local2safe(
     slc_dict: dict,
     all_anns: bool = False,
-    keep_files: bool = True,
+    keep_files: bool = False,
     work_dir: Path | str | None = None,
 ) -> Path:
     from burst2safe import utils as _utils

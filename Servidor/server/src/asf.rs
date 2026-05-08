@@ -373,7 +373,7 @@ fn build_burst_list(features: &[(Properties, Polygon)]) -> BurstList {
     let mut burst_list: BurstList = HashMap::new();
 
     for (props, _) in features {
-                
+
         let scene_name = Url::parse(&props.tiff_url).unwrap();
         let scene_name: Vec<_> = scene_name.path_segments().unwrap().collect();
         let subswath    = props.burst.subswath.to_uppercase();
@@ -381,15 +381,15 @@ fn build_burst_list(features: &[(Properties, Polygon)]) -> BurstList {
         let polarization = "VV".to_string();
         // nota mental que cuando lo pasemos a linux, borrar eso, osea corregir eso
         // Paths are relative to the /archive container mount point.
-        let rel_base = std::path::Path::new("\\archive")
+        let rel_base = std::path::Path::new("/archive")
             .join(scene_name[0].to_string())
             .join(&subswath)
             .join(&polarization)
-            .join(&burst_index).to_string_lossy().into_owned();
+            .join(&burst_index);
 
-        let rel_base = rel_base.replace("\\", "/"); // Ensure consistent path separators on Windows.
-        let data_path     = format!("{}.tiff", rel_base);
-        let metadata_path = format!("{}.xml", rel_base);
+
+        let data_path     = rel_base.with_extension("tiff").to_string_lossy().into_owned();
+        let metadata_path = rel_base.with_extension("xml").to_string_lossy().into_owned();
 
         burst_list
             .entry(scene_name[0].to_string())
@@ -422,16 +422,15 @@ fn build_burst_stitch(features: &[(Properties, Polygon)]) -> BurstStitchMap {
         let burst_index  = props.burst.burst_index.to_string();
         let polarization = "VV".to_string();
 
-        let rel_base = std::path::Path::new("\\archive")
+        let rel_base = std::path::Path::new("/archive")
             .join(scene_name[0].to_string())
             .join(&subswath)
             .join(&polarization)
-            .join(&burst_index).to_string_lossy()
-            .into_owned();
+            .join(&burst_index);
 
-        let rel_base = rel_base.replace("\\", "/"); // Ensure consistent path separators on Windows.
-        let data_path     = format!("{}.tiff", rel_base);
-        let metadata_path = format!("{}.xml", rel_base);
+
+        let data_path     = rel_base.with_extension("tiff").to_string_lossy().into_owned();
+        let metadata_path = rel_base.with_extension("xml").to_string_lossy().into_owned();
 
         stitch
             .entry(date)
