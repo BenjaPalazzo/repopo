@@ -73,14 +73,14 @@ services:
     command: /bin/bash
 
   mintpy:
-    build: ./DockerMintPy
-    working_dir: /data/copahue_stack
+    image: sisar/mintpy:latest
+    build:
+      context: ./DockerMintPy
+      dockerfile: Dockerfile
     volumes:
-      - ./data:/data
-      - ./DockerMintPy:/config
-    depends_on:
-      - isce
-    command: >
-     bash -c "
-      cd /data/copahue_stack &&
-      smallbaselineApp.py /config/config.cfg"
+      - ${JOB_DIR}:/jobs/${JOB_ID}
+      - ${RESULTS_DIR:-/tmp/mintpy_results}:/jobs/results
+    network_mode: none
+    environment:
+      - JOB_DIR=/jobs/${JOB_ID}
+      - RESULTS_DIR=/jobs/results

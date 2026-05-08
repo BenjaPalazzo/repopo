@@ -1,111 +1,99 @@
-# ============================================================
-# Dockerfile – MintPy 1.6.2
-# Base:    Ubuntu 22.04 LTS + Python 3.10
-# ============================================================
+# =============================================================================
+# sisar/mintpy — MintPy time-series analysis container
+# Base image : ubuntu:22.04
+# Python     : 3.10 (Ubuntu 22.04 default)
+# Interface  : single snake_case stage argument  (same as sisar/isce2)
+# Input dir  : /jobs/<job_id>   (ISCE2 outputs expected here)
+# Output dir : /jobs/results/<job_id>
+# =============================================================================
 
 FROM ubuntu:22.04
 
-# ── Evitar prompts interactivos durante apt ──────────────────
+# --------------------------------------------------------------------------- #
+# 1. Locale / timezone — non-interactive apt                                  #
+# --------------------------------------------------------------------------- #
 ENV DEBIAN_FRONTEND=noninteractive
-ENV TZ=America/Argentina/Mendoza
+ENV TZ=UTC
 
-# ── Variables de entorno de MintPy ──────────────────────────
-ENV MINTPY_HOME=/opt/MintPy
-ENV PATH="${MINTPY_HOME}/src/mintpy/cli:${PATH}"
-ENV PYTHONPATH="${MINTPY_HOME}/src:${PYTHONPATH}"
-
-# Carpeta para datos ERA5 (montar como volumen en producción)
-ENV WEATHER_DIR=/era5
-
-# ── 1. Dependencias del sistema ──────────────────────────────
+# --------------------------------------------------------------------------- #
+# 2. System packages                                                           #
+# --------------------------------------------------------------------------- #
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    # herramientas base
-    curl \
-    wget \
-    git \
-    ca-certificates \
-    unzip \
-    # compiladores y libs C
-    build-essential \
-    gfortran \
-    # Python 3.10 + pip
+    # Python runtime
     python3 \
     python3-dev \
     python3-pip \
     python3-venv \
-    # GDAL / geoespaciales
+    # GDAL (system)
     gdal-bin \
     libgdal-dev \
     python3-gdal \
     # HDF5
-    libhdf5-dev \
-    # FFTW (necesario para algunas rutinas de phase-unwrapping)
-    libfftw3-dev \
+    libhdf5-serial-dev \
+    # PROJ / GEOS (Cartopy / Shapely / pyproj)
+    libproj-dev \
+    proj-bin \
+    proj-data \
+    libgeos-dev \
+    # FFTW (scipy / pyresample)
     libfftw3-3 \
-    # NetCDF (ERA5 / PyAPS)
+    libfftw3-dev \
+    # Compression / I/O
     libnetcdf-dev \
-    # visualización headless
-    python3-matplotlib \
-    # utilidades extra
-    less \
-    vim \
-    && apt-get clean \
+    libeccodes-dev \
+    # Build essentials (needed for some pip wheels)
+    build-essential \
+    gfortran \
+    # Utilities
+    curl \
+    wget \
+    git \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# ── 2. Actualizar pip ────────────────────────────────────────
-RUN python3 -m pip install --upgrade pip setuptools wheel
+# --------------------------------------------------------------------------- #
+# 3. GDAL Python binding — pinned to system GDAL version                      #
+# --------------------------------------------------------------------------- #
+RUN pip3 install --no-cache-dir "GDAL==$(gdal-config --version)"
 
-# ── 3. Dependencias Python base (científicas) ────────────────
-RUN pip3 install --no-cache-dir \
-    numpy \
-    scipy \
-    matplotlib \
-    "gdal==$(gdal-config --version)" \
-    h5py \
-    netCDF4 \
-    pyproj \
-    shapely \
-    scikit-image \
-    joblib \
-    lxml \
-    requests \
-    tqdm
+# --------------------------------------------------------------------------- #
+# 4. Python dependencies                                                       #
+# --------------------------------------------------------------------------- #
+COPY mintpy_requirements.txt /tmp/mintpy_requirements.txt
+RUN pip3 install --no-cache-dir -r /tmp/mintpy_requirements.txt \
+    && pip3 install --no-cache-dir --upgrade cads-api-client cdsapi
 
-# ── 4. Instalar MintPy 1.6.2 desde PyPI ─────────────────────
-RUN pip3 install --no-cache-dir "MintPy==1.6.2"
+# --------------------------------------------------------------------------- #
+# 5. mintpy-runner binary                                                      #
+#    Pre-compiled linux/amd64 ELF — same pattern as isce-runner in sisar/isce2.
+#    Build it with:
+#        cd mintpy-runner && cargo build --release
+#        cp target/release/mintpy-runner ../bin/mintpy-runner
+# --------------------------------------------------------------------------- #
+COPY bin/mintpy-runner /usr/local/bin/mintpy-runner
+RUN chmod +x /usr/local/bin/mintpy-runner
 
-# ── 5. Dependencias adicionales de MintPy ────────────────────
-#    (algunas no se instalan automáticamente como dependencias)
-RUN pip3 install --no-cache-dir \
-    "pyaps3>=0.3.3" \
-    "cartopy>=0.21" \
-    "pykml" \
-    "pyyaml" \
-    "rich" \
-    "pandas" \
-    "utm" \
-    "simplekml" \
-    "multitaper"
+# --------------------------------------------------------------------------- #
+# 6. Entrypoint                                                                #
+# --------------------------------------------------------------------------- #
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# ── 6. Snaphu (phase unwrapping) ─────────────────────────────
-#    MintPy llama a snaphu como binario externo
-RUN apt-get update && apt-get install -y --no-install-recommends snaphu \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* \
-    || pip3 install --no-cache-dir snaphu
+# --------------------------------------------------------------------------- #
+# 7. Directory layout expected at runtime                                      #
+#    /jobs/<job_id>           — ISCE2 outputs (bind-mounted by scheduler)      #
+#    /jobs/results/<job_id>   — MintPy outputs (bind-mounted by scheduler)    #
+# --------------------------------------------------------------------------- #
+RUN mkdir -p /jobs /jobs/results
 
-# ── 7. Carpetas de trabajo ───────────────────────────────────
-RUN mkdir -p /era5 /data /output
+# --------------------------------------------------------------------------- #
+# 8. Verification                                                              #
+# --------------------------------------------------------------------------- #
+RUN python3 -c "import mintpy; print('MintPy OK:', mintpy.__version__)" \
+    && python3 -c "from osgeo import gdal; print('GDAL OK:', gdal.__version__)" \
+    && python3 -c "import pyaps3; print('pyaps3 OK')" \
+    && python3 -c "import h5py, scipy, numpy, matplotlib; print('Scientific stack OK')" \
+    && mintpy-runner --help > /dev/null 2>&1 && echo "mintpy-runner OK" \
+    || echo "WARNING: mintpy-runner placeholder in place — replace bin/mintpy-runner before production build"
 
-# ── 8. Verificación de la instalación ───────────────────────
-RUN python3 -c "\
-import mintpy; \
-print('MintPy version:', mintpy.__version__)" \
-    && echo "✔  MintPy instalado correctamente"
-
-# ── 9. Directorio de trabajo por defecto ─────────────────────
-WORKDIR /data
-
-# ── 10. Entrypoint ───────────────────────────────────────────
-# Por defecto muestra la ayuda de smallbaselineApp.py
-# En producción se sobreescribe con: docker run ... smallbaselineApp.py config.txt
-CMD ["smallbaselineApp.py", "--help"]
+ENTRYPOINT ["/entrypoint.sh"]
