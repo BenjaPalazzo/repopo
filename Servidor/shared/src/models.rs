@@ -26,7 +26,7 @@ impl UserTier {
         match self {
             Self::Demo => "demo",
             Self::Free => "free",
-            Self::Pro  => "pro",
+            Self::Pro => "pro",
         }
     }
 
@@ -34,8 +34,8 @@ impl UserTier {
         match s {
             "demo" => Some(Self::Demo),
             "free" => Some(Self::Free),
-            "pro"  => Some(Self::Pro),
-            _      => None,
+            "pro" => Some(Self::Pro),
+            _ => None,
         }
     }
 
@@ -43,7 +43,7 @@ impl UserTier {
     /// Higher value = claimed first.
     pub fn dispatch_priority(&self) -> i32 {
         match self {
-            Self::Pro  => 2,
+            Self::Pro => 2,
             Self::Free => 1,
             Self::Demo => 0,
         }
@@ -83,65 +83,65 @@ impl IsceStage {
 
     pub fn as_str(&self) -> &'static str {
         match self {
-            Self::UnpackTopoReference        => "unpack_topo_reference",
-            Self::UnpackSecondarySlc         => "unpack_secondary_slc",
-            Self::AverageBaseline            => "average_baseline",
-            Self::ExtractBurstOverlaps       => "extract_burst_overlaps",
-            Self::OverlapGeoToRadar          => "overlap_geo_to_radar",
-            Self::OverlapResample            => "overlap_resample",
-            Self::PairsMisreg                => "pairs_misreg",
-            Self::TimeseriesMisreg           => "timeseries_misreg",
-            Self::FullBurstGeoToRadar        => "full_burst_geo_to_radar",
-            Self::FullBurstResample          => "full_burst_resample",
-            Self::ExtractStackValidRegion    => "extract_stack_valid_region",
+            Self::UnpackTopoReference => "unpack_topo_reference",
+            Self::UnpackSecondarySlc => "unpack_secondary_slc",
+            Self::AverageBaseline => "average_baseline",
+            Self::ExtractBurstOverlaps => "extract_burst_overlaps",
+            Self::OverlapGeoToRadar => "overlap_geo_to_radar",
+            Self::OverlapResample => "overlap_resample",
+            Self::PairsMisreg => "pairs_misreg",
+            Self::TimeseriesMisreg => "timeseries_misreg",
+            Self::FullBurstGeoToRadar => "full_burst_geo_to_radar",
+            Self::FullBurstResample => "full_burst_resample",
+            Self::ExtractStackValidRegion => "extract_stack_valid_region",
             Self::MergeReferenceSecondarySlc => "merge_reference_secondary_slc",
-            Self::GenerateBurstIgram         => "generate_burst_igram",
-            Self::MergeBurstIgram            => "merge_burst_igram",
-            Self::FilterCoherence            => "filter_coherence",
-            Self::PhaseUnwrap                => "phase_unwrap",
+            Self::GenerateBurstIgram => "generate_burst_igram",
+            Self::MergeBurstIgram => "merge_burst_igram",
+            Self::FilterCoherence => "filter_coherence",
+            Self::PhaseUnwrap => "phase_unwrap",
         }
     }
 
     pub fn next(&self) -> Option<Self> {
         match self {
-            Self::UnpackTopoReference        => Some(Self::UnpackSecondarySlc),
-            Self::UnpackSecondarySlc         => Some(Self::AverageBaseline),
-            Self::AverageBaseline            => Some(Self::ExtractBurstOverlaps),
-            Self::ExtractBurstOverlaps       => Some(Self::OverlapGeoToRadar),
-            Self::OverlapGeoToRadar          => Some(Self::OverlapResample),
-            Self::OverlapResample            => Some(Self::PairsMisreg),
-            Self::PairsMisreg                => Some(Self::TimeseriesMisreg),
-            Self::TimeseriesMisreg           => Some(Self::FullBurstGeoToRadar),
-            Self::FullBurstGeoToRadar        => Some(Self::FullBurstResample),
-            Self::FullBurstResample          => Some(Self::ExtractStackValidRegion),
-            Self::ExtractStackValidRegion    => Some(Self::MergeReferenceSecondarySlc),
+            Self::UnpackTopoReference => Some(Self::UnpackSecondarySlc),
+            Self::UnpackSecondarySlc => Some(Self::AverageBaseline),
+            Self::AverageBaseline => Some(Self::ExtractBurstOverlaps),
+            Self::ExtractBurstOverlaps => Some(Self::OverlapGeoToRadar),
+            Self::OverlapGeoToRadar => Some(Self::OverlapResample),
+            Self::OverlapResample => Some(Self::PairsMisreg),
+            Self::PairsMisreg => Some(Self::TimeseriesMisreg),
+            Self::TimeseriesMisreg => Some(Self::FullBurstGeoToRadar),
+            Self::FullBurstGeoToRadar => Some(Self::FullBurstResample),
+            Self::FullBurstResample => Some(Self::ExtractStackValidRegion),
+            Self::ExtractStackValidRegion => Some(Self::MergeReferenceSecondarySlc),
             Self::MergeReferenceSecondarySlc => Some(Self::GenerateBurstIgram),
-            Self::GenerateBurstIgram         => Some(Self::MergeBurstIgram),
-            Self::MergeBurstIgram            => Some(Self::FilterCoherence),
-            Self::FilterCoherence            => Some(Self::PhaseUnwrap),
-            Self::PhaseUnwrap                => None,
+            Self::GenerateBurstIgram => Some(Self::MergeBurstIgram),
+            Self::MergeBurstIgram => Some(Self::FilterCoherence),
+            Self::FilterCoherence => Some(Self::PhaseUnwrap),
+            Self::PhaseUnwrap => None,
         }
     }
 
     pub fn from_str(s: &str) -> Option<Self> {
         match s {
-            "unpack_topo_reference"          => Some(Self::UnpackTopoReference),
-            "unpack_secondary_slc"           => Some(Self::UnpackSecondarySlc),
-            "average_baseline"               => Some(Self::AverageBaseline),
-            "extract_burst_overlaps"         => Some(Self::ExtractBurstOverlaps),
-            "overlap_geo_to_radar"           => Some(Self::OverlapGeoToRadar),
-            "overlap_resample"               => Some(Self::OverlapResample),
-            "pairs_misreg"                   => Some(Self::PairsMisreg),
-            "timeseries_misreg"              => Some(Self::TimeseriesMisreg),
-            "full_burst_geo_to_radar"        => Some(Self::FullBurstGeoToRadar),
-            "full_burst_resample"            => Some(Self::FullBurstResample),
-            "extract_stack_valid_region"     => Some(Self::ExtractStackValidRegion),
-            "merge_reference_secondary_slc"  => Some(Self::MergeReferenceSecondarySlc),
-            "generate_burst_igram"           => Some(Self::GenerateBurstIgram),
-            "merge_burst_igram"              => Some(Self::MergeBurstIgram),
-            "filter_coherence"               => Some(Self::FilterCoherence),
-            "phase_unwrap"                   => Some(Self::PhaseUnwrap),
-            _                                => None,
+            "unpack_topo_reference" => Some(Self::UnpackTopoReference),
+            "unpack_secondary_slc" => Some(Self::UnpackSecondarySlc),
+            "average_baseline" => Some(Self::AverageBaseline),
+            "extract_burst_overlaps" => Some(Self::ExtractBurstOverlaps),
+            "overlap_geo_to_radar" => Some(Self::OverlapGeoToRadar),
+            "overlap_resample" => Some(Self::OverlapResample),
+            "pairs_misreg" => Some(Self::PairsMisreg),
+            "timeseries_misreg" => Some(Self::TimeseriesMisreg),
+            "full_burst_geo_to_radar" => Some(Self::FullBurstGeoToRadar),
+            "full_burst_resample" => Some(Self::FullBurstResample),
+            "extract_stack_valid_region" => Some(Self::ExtractStackValidRegion),
+            "merge_reference_secondary_slc" => Some(Self::MergeReferenceSecondarySlc),
+            "generate_burst_igram" => Some(Self::GenerateBurstIgram),
+            "merge_burst_igram" => Some(Self::MergeBurstIgram),
+            "filter_coherence" => Some(Self::FilterCoherence),
+            "phase_unwrap" => Some(Self::PhaseUnwrap),
+            _ => None,
         }
     }
 
@@ -175,14 +175,125 @@ impl IsceStage {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum MintpyStage {
-    // TODO: define variants
+    LoadData,
+    ModifyNetwork,
+    ReferencePoint,
+    QuickOverview,
+    CorrectUnwrapError,
+    InvertNetwork,
+    CorrectLod,
+    CorrectSet,
+    CorrectIonosphere,
+    CorrectTroposphere,
+    Deramp,
+    CorrectTopography,
+    ResidualRms,
+    ReferenceDate,
+    Velocity,
+    Geocode,
+    GoogleEarth,
+    HdfEos5,
 }
 
 impl MintpyStage {
-    pub fn as_str(&self) -> &'static str { match *self {} }
-    pub fn next(&self) -> Option<Self>   { match *self {} }
-    pub fn from_str(_s: &str) -> Option<Self> { None }
-    pub fn resource_tier(&self) -> ResourceTier { match *self {} }
+    pub fn first() -> Self {
+        Self::LoadData
+    }
+
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            Self::LoadData => "load_data",
+            Self::ModifyNetwork => "modify_network",
+            Self::ReferencePoint => "reference_point",
+            Self::QuickOverview => "quick_overview",
+            Self::CorrectUnwrapError => "correct_unwrap_error",
+            Self::InvertNetwork => "invert_network",
+            Self::CorrectLod => "correct_LOD",
+            Self::CorrectSet => "correct_SET",
+            Self::CorrectIonosphere => "correct_ionosphere",
+            Self::CorrectTroposphere => "correct_troposphere",
+            Self::Deramp => "deramp",
+            Self::CorrectTopography => "correct_topography",
+            Self::ResidualRms => "residual_RMS",
+            Self::ReferenceDate => "reference_date",
+            Self::Velocity => "velocity",
+            Self::Geocode => "geocode",
+            Self::GoogleEarth => "google_earth",
+            Self::HdfEos5 => "hdfeos5",
+        }
+    }
+
+    pub fn next(&self) -> Option<Self> {
+        match self {
+            Self::LoadData => Some(Self::ModifyNetwork),
+            Self::ModifyNetwork => Some(Self::ReferencePoint),
+            Self::ReferencePoint => Some(Self::QuickOverview),
+            Self::QuickOverview => Some(Self::CorrectUnwrapError),
+            Self::CorrectUnwrapError => Some(Self::InvertNetwork),
+            Self::InvertNetwork => Some(Self::CorrectLod),
+            Self::CorrectLod => Some(Self::CorrectSet),
+            Self::CorrectSet => Some(Self::CorrectIonosphere),
+            Self::CorrectIonosphere => Some(Self::CorrectTroposphere),
+            Self::CorrectTroposphere => Some(Self::Deramp),
+            Self::Deramp => Some(Self::CorrectTopography),
+            Self::CorrectTopography => Some(Self::ResidualRms),
+            Self::ResidualRms => Some(Self::ReferenceDate),
+            Self::ReferenceDate => Some(Self::Velocity),
+            Self::Velocity => Some(Self::Geocode),
+            Self::Geocode => Some(Self::GoogleEarth),
+            Self::GoogleEarth => Some(Self::HdfEos5),
+            Self::HdfEos5 => None,
+        }
+    }
+
+    pub fn from_str(s: &str) -> Option<Self> {
+        match s {
+            "load_data" => Some(Self::LoadData),
+            "modify_network" => Some(Self::ModifyNetwork),
+            "reference_point" => Some(Self::ReferencePoint),
+            "quick_overview" => Some(Self::QuickOverview),
+            "correct_unwrap_error" => Some(Self::CorrectUnwrapError),
+            "invert_network" => Some(Self::InvertNetwork),
+            "correct_LOD" => Some(Self::CorrectLod),
+            "correct_SET" => Some(Self::CorrectSet),
+            "correct_ionosphere" => Some(Self::CorrectIonosphere),
+            "correct_troposphere" => Some(Self::CorrectTroposphere),
+            "deramp" => Some(Self::Deramp),
+            "correct_topography" => Some(Self::CorrectTopography),
+            "residual_RMS" => Some(Self::ResidualRms),
+            "reference_date" => Some(Self::ReferenceDate),
+            "velocity" => Some(Self::Velocity),
+            "geocode" => Some(Self::Geocode),
+            "google_earth" => Some(Self::GoogleEarth),
+            "hdfeos5" => Some(Self::HdfEos5),
+            _ => None,
+        }
+    }
+
+    pub fn resource_tier(&self) -> ResourceTier {
+        match self {
+            Self::LoadData
+            | Self::ModifyNetwork
+            | Self::ReferencePoint
+            | Self::QuickOverview
+            | Self::ReferenceDate
+            | Self::GoogleEarth
+            | Self::HdfEos5 => ResourceTier::Light,
+
+            Self::CorrectUnwrapError
+            | Self::InvertNetwork
+            | Self::CorrectLod
+            | Self::CorrectSet
+            | Self::CorrectIonosphere
+            | Self::CorrectTroposphere
+            | Self::Deramp
+            | Self::CorrectTopography
+            | Self::ResidualRms
+            | Self::Geocode => ResourceTier::Medium,
+
+            Self::Velocity => ResourceTier::Heavy,
+        }
+    }
 }
 
 // =============================================================================
@@ -195,10 +306,18 @@ pub enum MiaplpyStage {
 }
 
 impl MiaplpyStage {
-    pub fn as_str(&self) -> &'static str { match *self {} }
-    pub fn next(&self) -> Option<Self>   { match *self {} }
-    pub fn from_str(_s: &str) -> Option<Self> { None }
-    pub fn resource_tier(&self) -> ResourceTier { match *self {} }
+    pub fn as_str(&self) -> &'static str {
+        match *self {}
+    }
+    pub fn next(&self) -> Option<Self> {
+        match *self {}
+    }
+    pub fn from_str(_s: &str) -> Option<Self> {
+        None
+    }
+    pub fn resource_tier(&self) -> ResourceTier {
+        match *self {}
+    }
 }
 
 // =============================================================================
@@ -238,20 +357,20 @@ pub enum JobError {
 impl JobError {
     pub fn kind(&self) -> &'static str {
         match self {
-            Self::ContainerFailed { .. }      => "container_failed",
+            Self::ContainerFailed { .. } => "container_failed",
             Self::ContainerStartFailed { .. } => "container_start_failed",
-            Self::Timeout                     => "timeout",
-            Self::Internal { .. }             => "internal",
+            Self::Timeout => "timeout",
+            Self::Internal { .. } => "internal",
         }
     }
 
     /// Encodes variant-specific detail into the `job_error_message` column.
     pub fn to_db_string(&self) -> Option<String> {
         match self {
-            Self::ContainerFailed { exit_code }    => Some(exit_code.to_string()),
-            Self::ContainerStartFailed { reason }  => Some(reason.clone()),
-            Self::Timeout                          => None,
-            Self::Internal { message }             => Some(message.clone()),
+            Self::ContainerFailed { exit_code } => Some(exit_code.to_string()),
+            Self::ContainerStartFailed { reason } => Some(reason.clone()),
+            Self::Timeout => None,
+            Self::Internal { message } => Some(message.clone()),
         }
     }
 
@@ -264,9 +383,11 @@ impl JobError {
             "container_start_failed" => Some(Self::ContainerStartFailed {
                 reason: message.to_string(),
             }),
-            "timeout"   => Some(Self::Timeout),
-            "internal"  => Some(Self::Internal { message: message.to_string() }),
-            _           => None,
+            "timeout" => Some(Self::Timeout),
+            "internal" => Some(Self::Internal {
+                message: message.to_string(),
+            }),
+            _ => None,
         }
     }
 }
@@ -310,29 +431,32 @@ impl JobState {
     }
 
     pub fn is_terminal(&self) -> bool {
-        matches!(self, Self::Completed | Self::Failed { .. } | Self::Cancelled)
+        matches!(
+            self,
+            Self::Completed | Self::Failed { .. } | Self::Cancelled
+        )
     }
 
     pub fn as_str(&self) -> &'static str {
         match self {
-            Self::Queued                   => "queued",
-            Self::Initializing             => "initializing",
-            Self::Downloading              => "downloading",
-            Self::IsceProcessing { .. }    => "isce_processing",
-            Self::MintpyProcessing { .. }  => "mintpy_processing",
+            Self::Queued => "queued",
+            Self::Initializing => "initializing",
+            Self::Downloading => "downloading",
+            Self::IsceProcessing { .. } => "isce_processing",
+            Self::MintpyProcessing { .. } => "mintpy_processing",
             Self::MiaplpyProcessing { .. } => "miaplpy_processing",
-            Self::Completed                => "completed",
-            Self::Failed { .. }            => "failed",
-            Self::Cancelled                => "cancelled",
+            Self::Completed => "completed",
+            Self::Failed { .. } => "failed",
+            Self::Cancelled => "cancelled",
         }
     }
 
     pub fn as_stage_str(&self) -> Option<String> {
         match self {
-            Self::IsceProcessing { stage }    => Some(stage.as_str().to_string()),
-            Self::MintpyProcessing { stage }  => Some(stage.as_str().to_string()),
+            Self::IsceProcessing { stage } => Some(stage.as_str().to_string()),
+            Self::MintpyProcessing { stage } => Some(stage.as_str().to_string()),
             Self::MiaplpyProcessing { stage } => Some(stage.as_str().to_string()),
-            _                                 => None,
+            _ => None,
         }
     }
 }
@@ -432,11 +556,11 @@ fn parse_job_state(
     error_message: Option<&str>,
 ) -> Result<JobState, JobRowError> {
     match state {
-        "queued"       => Ok(JobState::Queued),
+        "queued" => Ok(JobState::Queued),
         "initializing" => Ok(JobState::Initializing),
-        "downloading"  => Ok(JobState::Downloading),
-        "completed"    => Ok(JobState::Completed),
-        "cancelled"    => Ok(JobState::Cancelled),
+        "downloading" => Ok(JobState::Downloading),
+        "completed" => Ok(JobState::Completed),
+        "cancelled" => Ok(JobState::Cancelled),
 
         "isce_processing" => {
             let s = stage.ok_or_else(|| JobRowError::MissingStage {

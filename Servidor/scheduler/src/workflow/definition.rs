@@ -109,7 +109,6 @@ pub fn step_for_state(
             job_workdir,
             workflow_cfg,
             images,
-            
         )),
 
         JobState::Downloading => {
@@ -168,7 +167,8 @@ fn post_isce_step(
         // ISCE2. This match will expand as workflow routing diverges.
         "sbas" | "ps_insar" | "timeseries" => {
             // TODO: replace with MintPy first-stage step once stages defined.
-            Some(completion_bridge_step(job_workdir, workflow_cfg, images))
+            let first = MintpyStage::first();
+            Some(mintpy_step(&first, job_workdir, workflow_cfg, images))
         }
         _ => {
             tracing::warn!(

@@ -30,7 +30,7 @@ total_ram_gb    = 16
 # -----------------------------------------------------------------------------
 download = "sisar/download:0.1.0"
 isce2    = "sisar/isce2:0.1.0"
-mintpy   = "sisar/mintpy:latest"
+mintpy   = "sisar/mintpy:0.1.0"
 miaplpy  = "sisar/miaplpy:latest"
 
 # =============================================================================

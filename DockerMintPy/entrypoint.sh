@@ -34,7 +34,7 @@ fi
 
 STAGE="$1"
 echo "[mintpy] Starting stage: ${STAGE}"
-echo "[mintpy] Job dir  : ${JOB_DIR:-/jobs}"
-echo "[mintpy] Results  : ${RESULTS_DIR:-/jobs/results}"
+echo "[mintpy] Job dir  : ${JOB_DIR:-/job}"
+echo "[mintpy] Results  : ${RESULTS_DIR:-/job/results}"
 
 exec mintpy-runner "$@"

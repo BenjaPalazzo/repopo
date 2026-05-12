@@ -1,0 +1,59 @@
+# =============================================================================
+# mintpy_requirements.txt
+# Python dependencies for sisar/mintpy
+#
+# Version pins sourced from:
+#   tools/scripts/isce_python3_9_requeriments.txt  (field-tested on Ubuntu 22.04)
+#   tools/scripts/mintpy_requirements.txt           (MintPy upstream)
+#
+# Excluded:
+#   - GDAL          (installed separately to pin to system ABI version)
+#   - jupyter / notebook stack
+#   - sentinelsat / burst2safe / dem_stitcher / download utilities
+#   - opencv        (not needed by MintPy steps)
+#   - munch / geojson / simplejson / html2text (ISCE processing utils, not MintPy)
+#
+# Compatibility: Python 3.10 · Ubuntu 22.04 · GDAL 3.4.x · NumPy 1.23.0
+# =============================================================================
+
+# --- Scientific core ---------------------------------------------------------
+numpy==1.23.0
+scipy==1.13.1
+matplotlib==3.5.2
+h5py==3.7.0
+pandas==1.4.3
+scikit-image
+
+# --- Geospatial --------------------------------------------------------------
+pyproj==3.3.1
+pyresample
+Fiona==1.8.21
+Shapely>=2.0,<3
+geopandas==1.0.1
+cartopy
+
+# --- MintPy core -------------------------------------------------------------
+MintPy
+
+# --- MintPy extras -----------------------------------------------------------
+cvxopt
+dask>=1.0
+dask-jobqueue>=0.3
+defusedxml==0.7.1
+joblib
+lxml==4.9.0
+pykml>=0.2
+pysolid
+spectral
+
+# --- Tropospheric correction (ERA5 / CDS) ------------------------------------
+# cads-api-client and cdsapi are installed separately with --upgrade to always
+# get the latest compatible release (Copernicus CDS API evolves frequently).
+pyaps3>=0.3
+
+# --- Parsing / system --------------------------------------------------------
+python-dateutil==2.8.2
+pytz==2022.1
+six==1.16.0
+packaging==22
+requests==2.28.1

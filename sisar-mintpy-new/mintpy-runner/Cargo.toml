@@ -1,0 +1,12 @@
+[package]
+name = "mintpy-runner"
+version = "0.1.0"
+edition = "2021"
+description = "MintPy stage dispatcher for the SISAR pipeline"
+
+[[bin]]
+name = "mintpy-runner"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
