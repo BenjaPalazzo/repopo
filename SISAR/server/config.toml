@@ -18,11 +18,11 @@ pool_size = 10
 # =============================================================================
 # Root directory under which job working directories are created.
 # Must be the same path configured in the scheduler's config.toml jobs_root.
-jobs_root = "/home/tomas/sisar/jobs"
+jobs_root = "/sisar/jobs"
 
 # Root of the local SAR image archive, used when building burst_list.json
 # DATA/METADATA paths inside each job's specification.
-archive_root = "/home/tomas/sisar/archive"
+archive_root = "/sisar/archive"
 
 # =============================================================================
 [auth]

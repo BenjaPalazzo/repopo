@@ -3,9 +3,9 @@
 # =============================================================================
 
 [paths]
-jobs_root    = "/home/tomas/sisar/jobs"
-archive_root = "/home/tomas/sisar/archive"
-logs_root    = "/home/tomas/sisar/logs"
+jobs_root    = "/sisar/jobs"
+archive_root = "/sisar/archive"
+logs_root    = "/sisar/logs"
 
 # -----------------------------------------------------------------------------
 [database]
@@ -28,10 +28,11 @@ total_ram_gb    = 16
 # -----------------------------------------------------------------------------
 [containers]
 # -----------------------------------------------------------------------------
-download = "sisar/isat-desc-1:latest"
+download = "sisar/download:0.1.0"
 isce2    = "sisar/isce2:0.1.0"
-mintpy   = "sisar/mintpy:latest"
-miaplpy  = "sisar/miaplpy:latest"
+mintpy   = "sisar/mintpy:0.1.0"
+miaplpy  = "sisar/miaplpy:0.1.0"
+results  = "sisar/results:0.1.0"
 
 # =============================================================================
 # User tier limits

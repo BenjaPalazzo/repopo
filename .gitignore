@@ -13,4 +13,3 @@ __pycache__/
 .lib64
 echo "lib64*" >> .gitignore
 .vscode/
-jobs/

@@ -1,0 +1,104 @@
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.5 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/usr/local/bin/local2safe", line 19, in <module>
+    from burst2safe import utils
+  File "/opt/sisar/lib/python3.12/site-packages/burst2safe/utils.py", line 17, in <module>
+    gdal.UseExceptions()
+  File "/opt/sisar/lib/python3.12/site-packages/osgeo/gdal.py", line 246, in UseExceptions
+    from . import gdal_array
+  File "/opt/sisar/lib/python3.12/site-packages/osgeo/gdal_array.py", line 10, in <module>
+    from . import _gdal_array
+Traceback (most recent call last):
+  File "/opt/sisar/lib/python3.12/site-packages/numpy/core/_multiarray_umath.py", line 46, in __getattr__
+    raise ImportError(msg)
+ImportError:
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.5 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.5 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/usr/local/bin/local2safe", line 174, in <module>
+    main()
+  File "/usr/local/bin/local2safe", line 170, in main
+    local2safe(slc_tree, args.all_anns, work_dir=args.work_dir)
+  File "/usr/local/bin/local2safe", line 146, in local2safe
+    safe_path = safe.create_safe()
+  File "/opt/sisar/lib/python3.12/site-packages/burst2safe/safe.py", line 461, in create_safe
+    self.create_safe_components()
+  File "/opt/sisar/lib/python3.12/site-packages/burst2safe/safe.py", line 304, in create_safe_components
+    swath.write()
+  File "/opt/sisar/lib/python3.12/site-packages/burst2safe/swath.py", line 155, in write
+    self.measurement.write(self.measurement_name)
+  File "/opt/sisar/lib/python3.12/site-packages/burst2safe/measurement.py", line 168, in write
+    self.create_geotiff(out_path)
+  File "/opt/sisar/lib/python3.12/site-packages/burst2safe/measurement.py", line 128, in create_geotiff
+    data = self.get_data()
+  File "/opt/sisar/lib/python3.12/site-packages/burst2safe/measurement.py", line 73, in get_data
+    data[burst_slice] = ds.GetRasterBand(band).ReadAsArray()
+  File "/opt/sisar/lib/python3.12/site-packages/osgeo/gdal.py", line 5283, in ReadAsArray
+    from osgeo import gdal_array
+  File "/opt/sisar/lib/python3.12/site-packages/osgeo/gdal_array.py", line 10, in <module>
+    from . import _gdal_array
+Traceback (most recent call last):
+  File "/opt/sisar/lib/python3.12/site-packages/numpy/core/_multiarray_umath.py", line 46, in __getattr__
+    raise ImportError(msg)
+ImportError:
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.5 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+
+Traceback (most recent call last):
+  File "/usr/local/bin/local2safe", line 174, in <module>
+    main()
+  File "/usr/local/bin/local2safe", line 170, in main
+    local2safe(slc_tree, args.all_anns, work_dir=args.work_dir)
+  File "/usr/local/bin/local2safe", line 146, in local2safe
+    safe_path = safe.create_safe()
+                ^^^^^^^^^^^^^^^^^^
+  File "/opt/sisar/lib/python3.12/site-packages/burst2safe/safe.py", line 461, in create_safe
+    self.create_safe_components()
+  File "/opt/sisar/lib/python3.12/site-packages/burst2safe/safe.py", line 304, in create_safe_components
+    swath.write()
+  File "/opt/sisar/lib/python3.12/site-packages/burst2safe/swath.py", line 155, in write
+    self.measurement.write(self.measurement_name)
+  File "/opt/sisar/lib/python3.12/site-packages/burst2safe/measurement.py", line 168, in write
+    self.create_geotiff(out_path)
+  File "/opt/sisar/lib/python3.12/site-packages/burst2safe/measurement.py", line 128, in create_geotiff
+    data = self.get_data()
+           ^^^^^^^^^^^^^^^
+  File "/opt/sisar/lib/python3.12/site-packages/burst2safe/measurement.py", line 73, in get_data
+    data[burst_slice] = ds.GetRasterBand(band).ReadAsArray()
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/sisar/lib/python3.12/site-packages/osgeo/gdal.py", line 5283, in ReadAsArray
+    from osgeo import gdal_array
+  File "/opt/sisar/lib/python3.12/site-packages/osgeo/gdal_array.py", line 10, in <module>
+    from . import _gdal_array
+ImportError: numpy.core.multiarray failed to import

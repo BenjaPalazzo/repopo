@@ -3,9 +3,9 @@
 # =============================================================================
 
 [paths]
-jobs_root    = "/home/tomas/sisar/jobs"
-archive_root = "/home/tomas/sisar/archive"
-logs_root    = "/home/tomas/sisar/logs"
+jobs_root    = "/sisar/jobs"
+archive_root = "/sisar/archive"
+logs_root    = "/sisar/logs"
 
 # -----------------------------------------------------------------------------
 [database]

@@ -18,11 +18,11 @@ pool_size = 10
 # =============================================================================
 # Root directory under which job working directories are created.
 # Must be the same path configured in the scheduler's config.toml jobs_root.
-jobs_root = "/home/tomas/sisar/jobs"
+jobs_root = "/sisar/jobs"
 
 # Root of the local SAR image archive, used when building burst_list.json
 # DATA/METADATA paths inside each job's specification.
-archive_root = "/home/tomas/sisar/archive"
+archive_root = "/sisar/archive"
 
 # =============================================================================
 [auth]
@@ -32,7 +32,7 @@ archive_root = "/home/tomas/sisar/archive"
 # Generate a secure random value for each, e.g.:
 #   openssl rand -hex 32
 [auth.interface_tokens]
-telegram = "8692403463:AAGfYuaYafxj9QkGXeQ1AfP2q7ntSotEYV8"
+telegram = "WgJ9e2K3lOK/mp6Hz4yxkEhv2sq6ZWLY9gmg7RrC0lk="
 # web   = "CHANGE_ME_web_token"
 
 # =============================================================================
@@ -54,7 +54,7 @@ connections   = 1
 # =============================================================================
 # Docker image used to extract and visualise timeseries data from a completed
 # job's HDF5 output.
-results = "sisar/results:latest"
+results = "sisar/results:0.1.0"
 
 # =============================================================================
 [user_tiers.demo]

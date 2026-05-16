@@ -199,14 +199,6 @@ RUN apt-get update && \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3-pyqt5 \
-    qt5-gtk-platformtheme \
-    qtwayland5 \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
 # ---------------------------------------------------------------------------
 # Copy ISCE2 Python subset from the builder stage
 #
