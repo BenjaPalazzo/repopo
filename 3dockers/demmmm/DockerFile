@@ -1,0 +1,52 @@
+# Dockerfile.dem — sisar/download-dem
+#
+# Downloads the Copernicus GLO-30 DEM for a job extent and prepares the four
+# files that ISCE2 expects:
+#
+#   /job/dem/full_res.dem.wgs84          — ISCE-format flat binary (float32,
+#                                          ellipsoidal heights WGS84)
+#   /job/dem/full_res.dem.wgs84.xml      — ISCE2 XML sidecar with WGS84 tag
+#   /job/dem/full_res.dem.wgs84.vrt      — GDAL VRT (read by stackSentinel)
+#   /job/dem/full_res.dem.wgs84.aux.xml  — GDAL auxiliary (written by rasterio)
+#
+# This container is dispatched by the scheduler in parallel with
+# sisar/download-s1 or sisar/download-nisar; both share the same /job volume.
+# It does NOT download SAR data, orbit files, or anything else.
+#
+# Runtime mount (provided by the scheduler):
+#   /job  — must contain specification.toml with a [dem.bounds] section (rw)
+#
+# Optional spec override:
+#   spec["dem"]["dataset"] = "glo_30" | "glo_90"   (default: glo_30)
+#
+# No Earthdata credentials are required for Copernicus tiles.
+#
+# Build:
+#   docker build -f Dockerfile.dem -t sisar/download-dem:latest .
+#
+# Run:
+#   docker run --rm -v /path/to/job:/job sisar/download-dem:latest
+ 
+FROM sisar/download-base:latest
+ 
+# ── 1. DEM download script ────────────────────────────────────────────────────
+COPY scripts/download_dem.py /usr/local/bin/download_dem
+RUN chmod +x /usr/local/bin/download_dem
+ 
+# ── 2. Container entry point ──────────────────────────────────────────────────
+# entrypoint_dem.py reads /job/specification.toml, validates [dem.bounds], and
+# calls download_dem. It also verifies the four expected output files exist
+# before exiting so the scheduler can trust a zero exit code means success.
+COPY entrypoint_dem.py /entrypoint_dem.py
+RUN chmod +x /entrypoint_dem.py
+ 
+# ── 3. Smoke-test ─────────────────────────────────────────────────────────────
+RUN python3 -c "from dem_stitcher.stitcher import stitch_dem; print('stitch_dem OK')" && \
+    python3 -c "from lxml import etree;                        print('lxml OK')"       && \
+    python3 -c "from osgeo import gdal; gdal.UseExceptions();  print('GDAL OK')"       && \
+    python3 -c "import rasterio;                               print('rasterio OK')"   && \
+    python3 -c "from shapely.geometry import box;              print('shapely OK')"    && \
+    python3 /usr/local/bin/download_dem --help > /dev/null && echo "download_dem CLI OK"
+ 
+ENTRYPOINT ["python3", "/entrypoint_dem.py"]
+

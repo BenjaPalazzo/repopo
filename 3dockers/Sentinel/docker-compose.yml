@@ -1,0 +1,31 @@
+version: "3.9"
+
+# docker-compose.yml — sisar/download-s1
+#
+# Levanta download-s1 y download-dem en paralelo sobre el mismo /job volume,
+# replicando el comportamiento del scheduler en entorno local.
+#
+# Uso:
+#   cp env.example .env   # completar JOB_DIR, ARCHIVE_DIR y credenciales
+#   docker compose up
+#
+# Para correr solo S1 sin el DEM:
+#   docker compose up download-s1
+
+services:
+
+  download-s1:
+    image: sisar/download-s1:latest
+    volumes:
+      - ${JOB_DIR}:/job
+      - ${ARCHIVE_DIR}:/archive
+    environment:
+      EARTHDATA_USER: ${EARTHDATA_USER}
+      EARTHDATA_PASS: ${EARTHDATA_PASS}
+      DOWNLOAD_CONCURRENCY: ${DOWNLOAD_CONCURRENCY:-4}
+
+  download-dem:
+    image: sisar/download-dem:latest
+    volumes:
+      - ${JOB_DIR}:/job
+    # El contenedor DEM no necesita credenciales Earthdata para GLO-30

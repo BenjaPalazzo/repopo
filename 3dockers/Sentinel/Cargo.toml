@@ -1,0 +1,33 @@
+[package]
+name        = "sisar-download-s1"
+version     = "0.1.0"
+edition     = "2021"
+description = "SISAR download-s1: verifica/descarga bursts S1, ensambla SAFEs y descarga órbitas"
+
+[[bin]]
+name = "sisar-download-s1"
+path = "src/main_s1.rs"
+
+[lib]
+name = "earthdata_rs"
+path = "src/lib.rs"
+
+[dependencies]
+# Async runtime
+tokio       = { version = "1",  features = ["full"] }
+
+# HTTP client
+reqwest     = { version = "0.12", default-features = false, features = ["rustls-tls", "json", "stream", "cookies"] }
+
+# URL manipulation
+url         = "2"
+
+# JSON (burst_list.json)
+serde       = { version = "1", features = ["derive"] }
+serde_json  = "1"
+
+# Descarga paralela
+futures     = "0.3"
+
+# Error handling
+anyhow      = "1"
