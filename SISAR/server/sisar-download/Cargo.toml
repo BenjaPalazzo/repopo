@@ -1,0 +1,37 @@
+[package]
+name        = "sisar-download"
+version     = "0.1.0"
+edition     = "2021"
+description = "SISAR download container binary: verifies/fetches S1 bursts, stitches SAFEs, downloads DEM and orbits"
+
+[[bin]]
+name = "sisar-download"
+path = "src/main.rs"
+
+# The earthdata download logic is kept in lib.rs so it can be unit-tested
+# independently. main.rs re-exports it via `mod earthdata { pub use earthdata_rs::download; }`
+# – but since it lives in the same crate we reference it as a local module.
+# Re-name the lib target so it doesn't clash with the binary name.
+[lib]
+name = "earthdata_rs"
+path = "src/lib.rs"
+
+[dependencies]
+# Async runtime
+tokio       = { version = "1",  features = ["full"] }
+
+# HTTP client (no default TLS features; use rustls for a smaller, portable build)
+reqwest     = { version = "0.12", default-features = false, features = ["rustls-tls", "json", "stream", "cookies"] }
+
+# URL manipulation
+url         = "2"
+
+# JSON (burst_list.json)
+serde       = { version = "1", features = ["derive"] }
+serde_json  = "1"
+
+# TOML (specification.toml)
+toml        = "0.8"
+
+# Error handling
+anyhow      = "1"

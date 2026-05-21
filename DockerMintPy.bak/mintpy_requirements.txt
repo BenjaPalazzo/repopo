@@ -1,0 +1,37 @@
+# MintPy core
+MintPy
+
+# Scientific core
+numpy
+scipy
+matplotlib
+h5py
+pandas
+scikit-image
+
+# Geospatial
+pyproj
+pyresample
+cartopy
+Fiona
+Shapely
+geopandas
+
+# Tropospheric correction (ERA5)
+pyaps3>=0.3
+cdsapi
+cads-api-client
+
+# MintPy extras
+cvxopt
+dask>=1.0
+dask-jobqueue>=0.3
+defusedxml
+joblib
+lxml
+pykml>=0.2
+pysolid
+spectral
+
+# GDAL Python binding — installed separately in Dockerfile
+# to pin it to the system GDAL version

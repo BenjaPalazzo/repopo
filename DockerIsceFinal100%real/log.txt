@@ -1,0 +1,378 @@
+ => ERROR [12/21] RUN cd /tmp/snaphu/src &&     make clean &&     make &&     install -m 755 ../bin/snaphu /usr/local/bin/snaphu &&     rm -rf /tmp/snaphu                                                      4.6s
+------
+ > [12/21] RUN cd /tmp/snaphu/src &&     make clean &&     make &&     install -m 755 ../bin/snaphu /usr/local/bin/snaphu &&     rm -rf /tmp/snaphu:
+0.198 cc -O3 -Wall    -c -o snaphu_tile.o snaphu_tile.c
+0.761 snaphu_tile.c: In function ‘SetupTile’:
+0.761 snaphu_tile.c:206:28: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+0.761   206 |   sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld",
+0.761       |                            ^~
+0.761   207 |           tiledir,TMPTILEROOT,basename,tilerow,tilecol,tileparams->ncol);
+0.761       |                               ~~~~~~~~
+0.761 In file included from /usr/include/stdio.h:894,
+0.761                  from snaphu_tile.c:11:
+0.761 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 1095 bytes into a destination of size 1024
+0.761    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+0.761       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.761    39 |                                   __glibc_objsize (__s), __fmt,
+0.761       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.761    40 |                                   __va_arg_pack ());
+0.761       |                                   ~~~~~~~~~~~~~~~~~
+0.761 snaphu_tile.c:211:30: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+0.761   211 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld",
+0.761       |                              ^~
+0.761   212 |             tiledir,TMPTILEROOT,basename,tilerow,tilecol,tileparams->ncol);
+0.761       |                                 ~~~~~~~~
+0.761 In file included from /usr/include/stdio.h:894,
+0.761                  from snaphu_tile.c:11:
+0.761 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 1095 bytes into a destination of size 1024
+0.761    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+0.761       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.761    39 |                                   __glibc_objsize (__s), __fmt,
+0.761       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.761    40 |                                   __va_arg_pack ());
+0.761       |                                   ~~~~~~~~~~~~~~~~~
+0.761 snaphu_tile.c:219:30: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+0.761   219 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld",
+0.761       |                              ^~
+0.761   220 |             tiledir,TMPTILEROOT,basename,tilerow,tilecol,tileparams->ncol);
+0.761       |                                 ~~~~~~~~
+0.761 In file included from /usr/include/stdio.h:894,
+0.761                  from snaphu_tile.c:11:
+0.761 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 1095 bytes into a destination of size 1024
+0.761    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+0.761       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.761    39 |                                   __glibc_objsize (__s), __fmt,
+0.761       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.761    40 |                                   __va_arg_pack ());
+0.761       |                                   ~~~~~~~~~~~~~~~~~
+0.762 snaphu_tile.c:227:30: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+0.762   227 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld",
+0.762       |                              ^~
+0.762   228 |             tiledir,TMPTILEROOT,basename,tilerow,tilecol,tileparams->ncol);
+0.762       |                                 ~~~~~~~~
+0.762 In file included from /usr/include/stdio.h:894,
+0.762                  from snaphu_tile.c:11:
+0.762 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 1095 bytes into a destination of size 1024
+0.762    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+0.762       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    39 |                                   __glibc_objsize (__s), __fmt,
+0.762       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    40 |                                   __va_arg_pack ());
+0.762       |                                   ~~~~~~~~~~~~~~~~~
+0.762 snaphu_tile.c:235:30: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+0.762   235 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld",
+0.762       |                              ^~
+0.762   236 |             tiledir,TMPTILEROOT,basename,tilerow,tilecol,tileparams->ncol);
+0.762       |                                 ~~~~~~~~
+0.762 In file included from /usr/include/stdio.h:894,
+0.762                  from snaphu_tile.c:11:
+0.762 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 1095 bytes into a destination of size 1024
+0.762    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+0.762       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    39 |                                   __glibc_objsize (__s), __fmt,
+0.762       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    40 |                                   __va_arg_pack ());
+0.762       |                                   ~~~~~~~~~~~~~~~~~
+0.762 snaphu_tile.c:243:30: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+0.762   243 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld",
+0.762       |                              ^~
+0.762   244 |             tiledir,TMPTILEROOT,basename,tilerow,tilecol,tileparams->ncol);
+0.762       |                                 ~~~~~~~~
+0.762 In file included from /usr/include/stdio.h:894,
+0.762                  from snaphu_tile.c:11:
+0.762 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 1095 bytes into a destination of size 1024
+0.762    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+0.762       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    39 |                                   __glibc_objsize (__s), __fmt,
+0.762       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    40 |                                   __va_arg_pack ());
+0.762       |                                   ~~~~~~~~~~~~~~~~~
+0.762 snaphu_tile.c:251:30: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+0.762   251 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld",
+0.762       |                              ^~
+0.762   252 |             tiledir,TMPTILEROOT,basename,tilerow,tilecol,tileparams->ncol);
+0.762       |                                 ~~~~~~~~
+0.762 In file included from /usr/include/stdio.h:894,
+0.762                  from snaphu_tile.c:11:
+0.762 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 1095 bytes into a destination of size 1024
+0.762    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+0.762       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    39 |                                   __glibc_objsize (__s), __fmt,
+0.762       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    40 |                                   __va_arg_pack ());
+0.762       |                                   ~~~~~~~~~~~~~~~~~
+0.762 snaphu_tile.c:259:30: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+0.762   259 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld",
+0.762       |                              ^~
+0.762   260 |             tiledir,TMPTILEROOT,basename,tilerow,tilecol,tileparams->ncol);
+0.762       |                                 ~~~~~~~~
+0.762 In file included from /usr/include/stdio.h:894,
+0.762                  from snaphu_tile.c:11:
+0.762 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 1095 bytes into a destination of size 1024
+0.762    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+0.762       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    39 |                                   __glibc_objsize (__s), __fmt,
+0.762       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    40 |                                   __va_arg_pack ());
+0.762       |                                   ~~~~~~~~~~~~~~~~~
+0.762 snaphu_tile.c:267:30: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+0.762   267 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld",
+0.762       |                              ^~
+0.762   268 |             tiledir,TMPTILEROOT,basename,tilerow,tilecol,tileparams->ncol);
+0.762       |                                 ~~~~~~~~
+0.762 In file included from /usr/include/stdio.h:894,
+0.762                  from snaphu_tile.c:11:
+0.762 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 1095 bytes into a destination of size 1024
+0.762    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+0.762       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    39 |                                   __glibc_objsize (__s), __fmt,
+0.762       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    40 |                                   __va_arg_pack ());
+0.762       |                                   ~~~~~~~~~~~~~~~~~
+0.762 snaphu_tile.c:275:30: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+0.762   275 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld",
+0.762       |                              ^~
+0.762   276 |             tiledir,TMPTILEROOT,basename,tilerow,tilecol,tileparams->ncol);
+0.762       |                                 ~~~~~~~~
+0.762 In file included from /usr/include/stdio.h:894,
+0.762                  from snaphu_tile.c:11:
+0.762 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 1095 bytes into a destination of size 1024
+0.762    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+0.762       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    39 |                                   __glibc_objsize (__s), __fmt,
+0.762       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    40 |                                   __va_arg_pack ());
+0.762       |                                   ~~~~~~~~~~~~~~~~~
+0.762 snaphu_tile.c:283:30: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+0.762   283 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld",
+0.762       |                              ^~
+0.762   284 |             tiledir,TMPTILEROOT,basename,tilerow,tilecol,tileparams->ncol);
+0.762       |                                 ~~~~~~~~
+0.762 In file included from /usr/include/stdio.h:894,
+0.762                  from snaphu_tile.c:11:
+0.762 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 1095 bytes into a destination of size 1024
+0.762    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+0.762       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    39 |                                   __glibc_objsize (__s), __fmt,
+0.762       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    40 |                                   __va_arg_pack ());
+0.762       |                                   ~~~~~~~~~~~~~~~~~
+0.762 snaphu_tile.c:291:30: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+0.762   291 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld",
+0.762       |                              ^~
+0.762   292 |             tiledir,TMPTILEROOT,basename,tilerow,tilecol,tileparams->ncol);
+0.762       |                                 ~~~~~~~~
+0.762 In file included from /usr/include/stdio.h:894,
+0.762                  from snaphu_tile.c:11:
+0.762 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 1095 bytes into a destination of size 1024
+0.762    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+0.762       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    39 |                                   __glibc_objsize (__s), __fmt,
+0.762       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    40 |                                   __va_arg_pack ());
+0.762       |                                   ~~~~~~~~~~~~~~~~~
+0.762 snaphu_tile.c:299:30: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+0.762   299 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld",
+0.762       |                              ^~
+0.762   300 |             tiledir,TMPTILEROOT,basename,tilerow,tilecol,tileparams->ncol);
+0.762       |                                 ~~~~~~~~
+0.762 In file included from /usr/include/stdio.h:894,
+0.762                  from snaphu_tile.c:11:
+0.762 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 1095 bytes into a destination of size 1024
+0.762    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+0.762       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    39 |                                   __glibc_objsize (__s), __fmt,
+0.762       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    40 |                                   __va_arg_pack ());
+0.762       |                                   ~~~~~~~~~~~~~~~~~
+0.762 snaphu_tile.c:310:30: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+0.762   310 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld",
+0.762       |                              ^~
+0.762   311 |             tiledir,TMPTILEROOT,basename,tilerow,tilecol,tileparams->ncol);
+0.762       |                                 ~~~~~~~~
+0.762 In file included from /usr/include/stdio.h:894,
+0.762                  from snaphu_tile.c:11:
+0.762 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 1095 bytes into a destination of size 1024
+0.762    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+0.762       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    39 |                                   __glibc_objsize (__s), __fmt,
+0.762       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.762    40 |                                   __va_arg_pack ());
+0.762       |                                   ~~~~~~~~~~~~~~~~~
+0.858 snaphu_tile.c: In function ‘IntegrateSecondaryFlows.constprop.isra’:
+0.859 snaphu_tile.c:3673:32: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+0.859  3673 |       sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld%s",
+0.859       |                                ^~
+0.859  3674 |               params->tiledir,TMPTILEROOT,basename,tilerow,tilecol,
+0.859       |                                           ~~~~~~~~
+0.859 snaphu_tile.c:3673:26: note: directive argument in the range [0, 9223372036854775806]
+0.859  3673 |       sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld%s",
+0.859       |                          ^~~~~~~~~~~~~~~~~~~~~~~
+0.859 snaphu_tile.c:3673:26: note: directive argument in the range [0, 4611686018427387903]
+0.859 In file included from /usr/include/stdio.h:894,
+0.859                  from snaphu_tile.c:11:
+0.859 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 24 and 1101 bytes into a destination of size 1024
+0.859    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+0.859       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.859    39 |                                   __glibc_objsize (__s), __fmt,
+0.859       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0.859    40 |                                   __va_arg_pack ());
+0.859       |                                   ~~~~~~~~~~~~~~~~~
+1.134 snaphu_tile.c: In function ‘ReadEdgesAboveAndBelow.isra’:
+1.134 snaphu_tile.c:1807:30: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+1.134  1807 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld%s",
+1.134       |                              ^~
+1.134  1808 |             params->tiledir,TMPTILEROOT,basename,tilerow-1,tilecol,
+1.134       |                                         ~~~~~~~~
+1.134 snaphu_tile.c:1807:24: note: directive argument in the range [0, 9223372036854775806]
+1.134  1807 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld%s",
+1.134       |                        ^~~~~~~~~~~~~~~~~~~~~~~
+1.134 snaphu_tile.c:1807:24: note: directive argument in the range [0, 9223372036854775807]
+1.134 In file included from /usr/include/stdio.h:894,
+1.134                  from snaphu_tile.c:11:
+1.134 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 24 and 1101 bytes into a destination of size 1024
+1.134    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+1.134       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.134    39 |                                   __glibc_objsize (__s), __fmt,
+1.134       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.134    40 |                                   __va_arg_pack ());
+1.134       |                                   ~~~~~~~~~~~~~~~~~
+1.134 snaphu_tile.c:1850:30: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+1.134  1850 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld%s",
+1.134       |                              ^~
+1.134  1851 |             params->tiledir,TMPTILEROOT,basename,tilerow+1,tilecol,
+1.134       |                                         ~~~~~~~~
+1.134 snaphu_tile.c:1850:24: note: directive argument in the range [1, 9223372036854775807]
+1.134  1850 |     sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld%s",
+1.134       |                        ^~~~~~~~~~~~~~~~~~~~~~~
+1.135 snaphu_tile.c:1850:24: note: directive argument in the range [0, 9223372036854775807]
+1.135 In file included from /usr/include/stdio.h:894,
+1.135                  from snaphu_tile.c:11:
+1.135 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 24 and 1101 bytes into a destination of size 1024
+1.135    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+1.135       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.135    39 |                                   __glibc_objsize (__s), __fmt,
+1.135       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.135    40 |                                   __va_arg_pack ());
+1.135       |                                   ~~~~~~~~~~~~~~~~~
+1.168 snaphu_tile.c: In function ‘ReadNextRegion.isra’:
+1.168 snaphu_tile.c:1628:28: warning: ‘%s’ directive writing up to 511 bytes into a region of size between 504 and 1015 [-Wformat-overflow=]
+1.168  1628 |   sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld%s",
+1.168       |                            ^~
+1.168  1629 |           params->tiledir,TMPTILEROOT,basename,tilerow,tilecol,
+1.168       |                                       ~~~~~~~~
+1.168 snaphu_tile.c:1628:22: note: directive argument in the range [0, 9223372036854775807]
+1.168  1628 |   sprintf(tempstring,"%s/%s%s_%ld_%ld.%ld%s",
+1.168       |                      ^~~~~~~~~~~~~~~~~~~~~~~
+1.168 snaphu_tile.c:1628:22: note: directive argument in the range [0, 9223372036854775807]
+1.168 In file included from /usr/include/stdio.h:894,
+1.168                  from snaphu_tile.c:11:
+1.168 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 24 and 1101 bytes into a destination of size 1024
+1.168    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+1.168       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.168    39 |                                   __glibc_objsize (__s), __fmt,
+1.168       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.168    40 |                                   __va_arg_pack ());
+1.168       |                                   ~~~~~~~~~~~~~~~~~
+1.221 snaphu_tile.c: In function ‘GrowRegions’:
+1.221 snaphu_tile.c:636:27: warning: ‘%s’ directive writing 8 bytes into a region of size between 1 and 512 [-Wformat-overflow=]
+1.221   636 |     sprintf(regionfile,"%s%s",outfiles->outfile,REGIONSUFFIX);
+1.221       |                           ^~
+1.221 In file included from /usr/include/stdio.h:894,
+1.221                  from snaphu_tile.c:11:
+1.221 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 9 and 520 bytes into a destination of size 512
+1.221    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+1.221       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.221    39 |                                   __glibc_objsize (__s), __fmt,
+1.221       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.221    40 |                                   __va_arg_pack ());
+1.221       |                                   ~~~~~~~~~~~~~~~~~
+1.584 snaphu_tile.c: In function ‘AssembleTiles’:
+1.584 snaphu_tile.c:1553:30: warning: ‘%s’ directive writing 11 bytes into a region of size between 0 and 511 [-Wformat-overflow=]
+1.584  1553 |         sprintf(filename,"%s/%s%ld_%ld",
+1.584       |                              ^~
+1.584 snaphu_tile.c:1553:26: note: directive argument in the range [0, 9223372036854775806]
+1.584  1553 |         sprintf(filename,"%s/%s%ld_%ld",
+1.584       |                          ^~~~~~~~~~~~~~
+1.584 snaphu_tile.c:1553:26: note: directive argument in the range [0, 9223372036854775806]
+1.584 In file included from /usr/include/stdio.h:894,
+1.584                  from snaphu_tile.c:11:
+1.584 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 563 bytes into a destination of size 512
+1.584    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+1.584       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.584    39 |                                   __glibc_objsize (__s), __fmt,
+1.584       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1.584    40 |                                   __va_arg_pack ());
+1.584       |                                   ~~~~~~~~~~~~~~~~~
+1.999 cc -O3 -Wall    -c -o snaphu_solver.o snaphu_solver.c
+2.958 cc -O3 -Wall    -c -o snaphu_io.o snaphu_io.c
+3.397 snaphu_io.c: In function ‘ChildResetStreamPointers’:
+3.397 snaphu_io.c:3402:23: warning: ‘%s’ directive writing 11 bytes into a region of size between 0 and 511 [-Wformat-overflow=]
+3.397  3402 |   sprintf(logfile,"%s/%s%ld_%ld",params->tiledir,LOGFILEROOT,tilerow,tilecol);
+3.397       |                       ^~
+3.397 In file included from /usr/include/stdio.h:894,
+3.397                  from snaphu_io.c:11:
+3.397 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 16 and 565 bytes into a destination of size 512
+3.397    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+3.397       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.397    39 |                                   __glibc_objsize (__s), __fmt,
+3.397       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.397    40 |                                   __va_arg_pack ());
+3.397       |                                   ~~~~~~~~~~~~~~~~~
+3.424 In file included from /usr/include/string.h:535,
+3.424                  from snaphu_io.c:17:
+3.424 In function ‘strncat’,
+3.424     inlined from ‘DumpIncrCostFiles’ at snaphu_io.c:3463:3:
+3.424 /usr/include/x86_64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin___strncat_chk’ output may be truncated copying between 0 and 511 bytes from a string of length 511 [-Wstringop-truncation]
+3.424   138 |   return __builtin___strncat_chk (__dest, __src, __len,
+3.424       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.424   139 |                                   __glibc_objsize (__dest));
+3.424       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+3.424 /usr/include/x86_64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin___strncat_chk’ output may be truncated copying between 0 and 511 bytes from a string of length 511 [-Wstringop-truncation]
+3.424 In function ‘strncat’,
+3.424     inlined from ‘DumpIncrCostFiles’ at snaphu_io.c:3478:3:
+3.424 /usr/include/x86_64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin___strncat_chk’ output may be truncated copying between 0 and 511 bytes from a string of length 511 [-Wstringop-truncation]
+3.424   138 |   return __builtin___strncat_chk (__dest, __src, __len,
+3.424       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.424   139 |                                   __glibc_objsize (__dest));
+3.424       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+3.460 snaphu_io.c: In function ‘MakeTileDir’:
+3.460 snaphu_io.c:3510:32: warning: ‘%s’ directive writing 13 bytes into a region of size between 1 and 512 [-Wformat-overflow=]
+3.460  3510 |     sprintf(params->tiledir,"%s%s%ld",path,TMPTILEDIRROOT,params->parentpid);
+3.460       |                                ^~
+3.460 In file included from /usr/include/stdio.h:894,
+3.460                  from snaphu_io.c:11:
+3.460 /usr/include/x86_64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 15 and 545 bytes into a destination of size 512
+3.460    38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+3.460       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.460    39 |                                   __glibc_objsize (__s), __fmt,
+3.460       |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.460    40 |                                   __va_arg_pack ());
+3.460       |                                   ~~~~~~~~~~~~~~~~~
+3.476 cc -O3 -Wall    -c -o snaphu_util.o snaphu_util.c
+3.757 cc -O3 -Wall    -c -o snaphu_cost.o snaphu_cost.c
+4.188 cc -O3 -Wall    -c -o snaphu_cs2.o snaphu_cs2.c
+4.260 snaphu_cs2.c: In function ‘relabel’:
+4.260 snaphu_cs2.c:694:18: warning: ‘a_max’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+4.260   694 |     i -> current = a_max;
+4.260       |     ~~~~~~~~~~~~~^~~~~~~
+4.467 cc -O3 -Wall  \
+4.467 	snaphu.c \
+4.467 	snaphu_tile.o snaphu_solver.o snaphu_io.o snaphu_util.o snaphu_cost.o snaphu_cs2.o  \
+4.467 	-o ../bin/snaphu \
+4.467 	-lm
+4.559 /usr/bin/ld: cannot open output file ../bin/snaphu: No such file or directory
+4.559 collect2: error: ld returned 1 exit status
+4.560 make: *** [Makefile:38: ../bin/snaphu] Error 1
+------
+Dockerfile:159
+--------------------
+ 158 |
+ 159 | >>> RUN cd /tmp/snaphu/src && \
+ 160 | >>>     make clean && \
+ 161 | >>>     make && \
+ 162 | >>>     install -m 755 ../bin/snaphu /usr/local/bin/snaphu && \
+ 163 | >>>     rm -rf /tmp/snaphu
+ 164 |
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/bash -o pipefail -c cd /tmp/snaphu/src &&     make clean &&     make &&     install -m 755 ../bin/snaphu /usr/local/bin/snaphu &&     rm -rf /tmp/snaphu" did not complete successfully: exit code: 2

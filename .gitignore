@@ -1,0 +1,15 @@
+*target/
+data/
+dem/
+orbits/
+lib/
+lib64/
+include/
+share/
+pyvenv.cfg
+.env
+__pycache__/
+*.pyc
+.lib64
+echo "lib64*" >> .gitignore
+.vscode/

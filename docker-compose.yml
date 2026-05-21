@@ -1,0 +1,86 @@
+services:
+
+  isce:
+    image: isce2:2.6.3
+    build:
+      context: ./DockerIsceFinal
+      dockerfile: Dockerfile
+
+    # -----------------------------------------------------------------------
+    # Credenciales — se pueden pasar aquí o en un archivo .env
+    # -----------------------------------------------------------------------
+    environment:
+      # NASA Earthdata (para descargar órbitas precisas con sentineleof)
+      - EARTHDATA_USER=${EARTHDATA_USER:-}
+      - EARTHDATA_PASS=${EARTHDATA_PASS:-}
+      # Copernicus CDS (para correcciones troposféricas ERA5 con pyaps3)
+      - CDSAPI_KEY=${CDSAPI_KEY:-}
+      # X11 forwarding (si se quiere visualización gráfica desde el contenedor)
+      - DISPLAY=${DISPLAY:-}
+
+    # -----------------------------------------------------------------------
+    # Volúmenes
+    # -----------------------------------------------------------------------
+    volumes:
+      # Directorio principal de trabajo (datos SAR, DEMs, resultados)
+      - ${DATA_DIR:-./data}:/data
+
+      # Órbitas (cache reutilizable entre ejecuciones)
+      - ${ORBITS_DIR:-./orbits}:/orbits
+
+      # DEM (puede compartirse entre proyectos)
+      - ${DEM_DIR:-./dem}:/dem
+
+      # Scripts de procesamiento (montados para poder editarlos sin rebuild)
+      - ./scripts:/isce_scripts:ro
+
+      # Credenciales del sistema host (alternativa a variables de entorno)
+      # Descomentar si se prefiere montar los archivos directamente:
+      # - ~/.netrc:/root/.netrc:ro
+      # - ~/.cdsapirc:/root/.cdsapirc:ro
+
+      # X11 socket (para visualización gráfica, si es necesario)
+      # - /tmp/.X11-unix:/tmp/.X11-unix:ro
+
+    working_dir: /data
+
+    # El contenedor permanece activo esperando comandos
+    stdin_open: true
+    tty: true
+
+    # -----------------------------------------------------------------------
+    # Recursos — ajustar según la máquina host
+    # -----------------------------------------------------------------------
+    deploy:
+      resources:
+        limits:
+          # Sin límite de CPU por defecto; descomentar para limitar:
+          # cpus: "8"
+          memory: 8G
+        reservations:
+          memory: 8G
+
+    # -----------------------------------------------------------------------
+    # Política de reinicio
+    # -----------------------------------------------------------------------
+    restart: "no"
+
+    # -----------------------------------------------------------------------
+    # Comando por defecto (shell interactivo)
+    # Para ejecutar run_isce.sh automáticamente, sobrescribir al hacer `run`:
+    #   docker compose run --rm isce2 /isce_scripts/run_isce.sh /data/parametros.txt
+    # -----------------------------------------------------------------------
+    command: /bin/bash
+
+  mintpy:
+    image: sisar/mintpy:latest
+    build:
+      context: ./DockerMintPy
+      dockerfile: Dockerfile
+    volumes:
+      - ${JOB_DIR}:/jobs/${JOB_ID}
+      - ${RESULTS_DIR:-/tmp/mintpy_results}:/jobs/results
+    network_mode: none
+    environment:
+      - JOB_DIR=/jobs/${JOB_ID}
+      - RESULTS_DIR=/jobs/results

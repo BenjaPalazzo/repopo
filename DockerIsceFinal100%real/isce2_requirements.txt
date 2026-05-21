@@ -1,0 +1,62 @@
+# =============================================================================
+# isce2_requirements.txt
+# Python dependencies for ISCE2 v2.6.3 — processing only
+#
+# Scope: topsStack interferometric processing (steps 01–16).
+# Excluded:
+#   - sentineleof / burst2safe / dem_stitcher / sentinelsat
+#       (orbit and data download handled by separate containers)
+#   - pyaps3 / ERA5 / CDS tooling
+#       (tropospheric correction handled by a separate container)
+#   - MintPy / MiaplPy and their exclusive dependencies
+#   - Jupyter / notebook stack
+#   - GDAL (installed separately to pin system ABI version)
+#   - Cartopy, txt2tags, download utilities, click ecosystem
+#
+# Compatibility: Python 3.10 · Ubuntu 22.04 · GDAL 3.4.x · NumPy 1.23.0
+# =============================================================================
+
+# Scientific core
+numpy==1.23.0
+scipy==1.13.1
+matplotlib==3.5.2
+Pillow==9.1.1
+h5py==3.7.0
+pandas==1.4.3
+
+# Geospatial
+Fiona==1.8.21
+pyproj==3.3.1
+Shapely>=2.0,<3
+geopandas==1.0.1
+pyshp==2.3.0
+
+# OpenCV Python (headless — no Qt/GUI deps needed on a server)
+# libopencv-dev (apt) provides C++ headers for scons; this provides Python bindings.
+opencv-python-headless==4.6.0.66
+
+# Image and signal processing
+scikit-image
+
+# Parsing and data formats
+lxml==4.9.0
+beautifulsoup4==4.11.1
+soupsieve==2.3.2.post1
+simplejson==3.17.6
+munch==2.5.0
+geojson==2.5.0
+
+# Date/time and system utilities
+python-dateutil==2.8.2
+pytz==2022.1
+six==1.16.0
+packaging==22
+pyparsing==3.0.9
+cycler==0.11.0
+kiwisolver==1.4.3
+fonttools==4.33.3
+
+# html2text (used by some ISCE2 parsers)
+html2text==2020.1.16
+
+requests==2.28.1

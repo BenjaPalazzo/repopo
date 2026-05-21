@@ -1,0 +1,77 @@
+# =============================================================================
+# SISAR API Server — Configuration
+# =============================================================================
+
+[server]
+# Address and port to listen on.
+host = "127.0.0.1"
+port = 8080
+
+# =============================================================================
+[database]
+# =============================================================================
+url       = "postgresql://postgres:08252003@localhost:5432/sisar"
+pool_size = 10
+
+# =============================================================================
+[paths]
+# =============================================================================
+# Root directory under which job working directories are created.
+# Must be the same path configured in the scheduler's config.toml jobs_root.
+jobs_root = "/sisar/jobs"
+
+# Root of the local SAR image archive, used when building burst_list.json
+# DATA/METADATA paths inside each job's specification.
+archive_root = "/sisar/archive"
+
+# =============================================================================
+[auth]
+# =============================================================================
+# Named bearer tokens for interface clients.  Add one entry per interface.
+# The key is used in logs to identify the source of each request.
+# Generate a secure random value for each, e.g.:
+#   openssl rand -hex 32
+[auth.interface_tokens]
+telegram = "WgJ9e2K3lOK/mp6Hz4yxkEhv2sq6ZWLY9gmg7RrC0lk="
+# web   = "CHANGE_ME_web_token"
+
+# =============================================================================
+[asf]
+# =============================================================================
+# Base URL for the ASF search endpoint.
+endpoint = "https://api.daac.asf.alaska.edu/services/search/param"
+
+# =============================================================================
+[defaults]
+# =============================================================================
+# Processing parameter defaults applied when the job request omits them.
+range_looks   = 20
+azimuth_looks = 5
+connections   = 1
+
+# =============================================================================
+[containers]
+# =============================================================================
+# Docker image used to extract and visualise timeseries data from a completed
+# job's HDF5 output.
+results = "sisar/results:0.1.0"
+
+# =============================================================================
+[user_tiers.demo]
+# =============================================================================
+max_aoi_km2         = 500
+max_time_range_days = 30
+max_concurrent_jobs = 1
+max_jobs_per_month  = 3
+
+[user_tiers.free]
+max_aoi_km2         = 2000
+max_time_range_days = 180
+max_concurrent_jobs = 2
+max_jobs_per_month  = 10
+
+[user_tiers.pro]
+max_aoi_km2         = 0    # 0 = unlimited
+max_time_range_days = 0    # 0 = unlimited
+max_concurrent_jobs = 5
+max_jobs_per_month  = 0    # 0 = unlimited

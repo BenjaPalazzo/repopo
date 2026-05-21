@@ -1,0 +1,23 @@
+# sisar/results — Python dependencies
+# Do NOT add gdal here; it is installed separately to match the system GDAL ABI.
+
+# Scientific core
+numpy
+scipy
+matplotlib
+h5py
+
+# Geospatial
+pyproj
+Shapely
+
+# MintPy (brings in view.py and tsview.py)
+MintPy
+
+# Utilities used by MintPy viewers
+pysolid
+pykml
+defusedxml
+lxml
+python-dateutil
+pytz

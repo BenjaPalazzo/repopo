@@ -1,0 +1,15 @@
+[package]
+name = "sisar-results"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "sisar-results"
+path = "src/main.rs"
+
+[dependencies]
+# CLI argument parsing
+clap = { version = "4", features = ["derive"] }
+
+# Error handling
+anyhow = "1"
